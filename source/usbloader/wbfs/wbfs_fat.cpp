@@ -11,7 +11,7 @@
 #include <sys/statvfs.h>
 #include <ctype.h>
 #include <fat.h>
-
+#include "usbloader/fatfile_frag.h"
 #include "Controls/DeviceHandler.hpp"
 #include "FileOperations/fileops.h"
 #include "settings/CSettings.h"
@@ -19,7 +19,6 @@
 #include "usbloader/disc.h"
 #include "usbloader/usbstorage2.h"
 #include "language/gettext.h"
-#include "libs/libfat/fatfile_frag.h"
 #include "utils/ShowError.h"
 #include "wbfs_fat.h"
 #include "prompts/ProgressWindow.h"

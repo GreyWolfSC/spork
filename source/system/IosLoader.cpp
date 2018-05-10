@@ -76,35 +76,11 @@ bool IosLoader::IsD2X(s32 ios)
  */
 s32 IosLoader::LoadAppCios()
 {
-	u32 activeCios = IOS_GetVersion();
-	s32 ret = -1;
-
 	// We have what we need
-	if((int) activeCios == Settings.LoaderIOS)
+	if((int)IOS_GetVersion() == 58)
 		return 0;
 
-	u8 ciosLoadPriority[] = { Settings.LoaderIOS, 249, 250, 222, 223, 245, 246, 247, 248 }; // Ascending.
-
-
-	for (u32 i = 0; i < (sizeof(ciosLoadPriority)/sizeof(ciosLoadPriority[0])); ++i)
-	{
-		u32 cios = ciosLoadPriority[i];
-
-		if (activeCios == cios)
-		{
-			ret = 0;
-			break;
-		}
-
-		if ((ret = ReloadIosSafe(cios)) > -1)
-		{
-			// Remember working cios.
-			Settings.LoaderIOS = cios;
-			break;
-		}
-	}
-
-	return ret;
+	return ReloadIosSafe(58);
 }
 
 

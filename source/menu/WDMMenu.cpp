@@ -28,8 +28,8 @@
 #include "themes/CTheme.h"
 #include "language/gettext.h"
 #include "usbloader/wbfs.h"
-#include "libs/libwbfs/libwbfs.h"
-#include "libs/libwbfs/wiidisc.h"
+#include <wbfs/libwbfs.h>
+#include <wbfs/wiidisc.h>
 #include "usbloader/fstfile.h"
 #include "settings/GameTitles.h"
 #include "gecko.h"

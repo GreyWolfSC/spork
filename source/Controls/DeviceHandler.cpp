@@ -340,10 +340,6 @@ int DeviceHandler::GetFilesystemType(int dev)
 		return PART_FS_WBFS;
 	else if(strncmp(FSName, "FAT", 3) == 0)
 		return PART_FS_FAT;
-	else if(strncmp(FSName, "NTFS", 4) == 0)
-		return PART_FS_NTFS;
-	else if(strncmp(FSName, "LINUX", 4) == 0)
-		return PART_FS_EXT;
 
 	return -1;
 }

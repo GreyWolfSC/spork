@@ -2,8 +2,8 @@
 #define GCDISC_H
 
 #include <stdio.h>
-#include "libwbfs_os.h" // this file is provided by the project wanting to compile libwbfs and wiidisc
-#include "wiidisc.h"
+#include <wbfs/libwbfs_os.h> // this file is provided by the project wanting to compile libwbfs and wiidisc
+#include <wbfs/wiidisc.h>
 
 #ifdef __cplusplus
 extern "C"

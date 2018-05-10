@@ -32,7 +32,7 @@
 #include <string>
 
 #include "gecko.h"
-#include "ZipFile.h"
+#include "FileOperations/ZipFile.h"
 #include "http.h"
 #include "networkops.h"
 #include "HTML_Stream.h"
@@ -210,11 +210,7 @@ int CheckUpdate()
 	int revnumber = 0;
 	int currentrev = atoi(GetRev());
 
-#ifdef FULLCHANNEL
-	struct block file = downloadfile( "http://svn.code.sf.net/p/usbloadergx/code/branches/updates/update_wad.txt" );
-#else
 	struct block file = downloadfile("http://svn.code.sf.net/p/usbloadergx/code/branches/updates/update_dol.txt");
-#endif
 
 	if (file.data != NULL)
 	{
@@ -234,11 +230,7 @@ static int ApplicationDownload(void)
 	int newrev = 0;
 	int currentrev = atoi(GetRev());
 
-#ifdef FULLCHANNEL
-	struct block file = downloadfile( "http://svn.code.sf.net/p/usbloadergx/code/branches/updates/update_wad.txt" );
-#else
 	struct block file = downloadfile("http://svn.code.sf.net/p/usbloadergx/code/branches/updates/update_dol.txt");
-#endif
 
 	if (file.data != NULL)
 	{

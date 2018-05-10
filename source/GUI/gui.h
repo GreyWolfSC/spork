@@ -48,6 +48,7 @@
 #include "SoundOperations/gui_bgm.h"
 #include "utils/timer.h"
 #include "sigslot.h"
+#include "Colors.h"
 
 //! Frequently used variables
 extern FreeTypeGX *fontSystem;

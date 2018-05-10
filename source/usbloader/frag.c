@@ -4,10 +4,8 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
-#include "libs/libwbfs/libwbfs.h"
-#include "libs/libfat/fatfile_frag.h"
-#include "libs/libntfs/ntfsfile_frag.h"
-#include "libs/libext2fs/ext2_frag.h"
+#include <wbfs/libwbfs.h>
+#include "fatfile_frag.h"
 
 #include "usbloader/wbfs.h"
 #include "usbloader/wdvd.h"
@@ -167,7 +165,7 @@ int get_frag_list_for_file(char *fname, u8 *id, const u8 wbfs_part_fs, const u32
 	FragList *fa = NULL;
 	FragList *fw = NULL;
 	int ret;
-	u32 i, j;
+	u32 i;
 	int is_wbfs = 0;
 	int ret_val = -1;
 
@@ -194,26 +192,6 @@ int get_frag_list_for_file(char *fname, u8 *id, const u8 wbfs_part_fs, const u32
 				//ret_val = ret;
 				ret_val = 0;
 				goto out;
-			}
-		} else if (wbfs_part_fs == PART_FS_NTFS) {
-			ret = _NTFS_get_fragments(fname, &frag_append, fs);
-			if (ret) {
-				ret_val = ret;
-				goto out;
-			}
-			// offset to start of partition
-			for (j=0; j<fs->num; j++) {
-				fs->frag[j].sector += lba_offset;
-			}
-		} else if (wbfs_part_fs == PART_FS_EXT) {
-			ret = _EXT2_get_fragments(fname, &frag_append, fs);
-			if (ret) {
-				ret_val = ret;
-				goto out;
-			}
-			// offset to start of partition
-			for (j=0; j<fs->num; j++) {
-				fs->frag[j].sector += lba_offset;
 			}
 		} else if (wbfs_part_fs == PART_FS_WBFS) {
 			// if wbfs file format, remap.

@@ -28,7 +28,7 @@
 #include <map>
 #include <string>
 #include <vector>
-#include "xml/tinyxml2.h"
+#include <tinyxml2.h>
 #include "CCategoryList.hpp"
 
 using namespace tinyxml2;

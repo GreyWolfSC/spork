@@ -23,7 +23,7 @@
  ***************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string>
 #include "CGameCategories.hpp"
 #include "GameTitles.h"
 #include "settings/CSettings.h"
@@ -142,7 +142,8 @@ bool CGameCategories::Save()
 	XMLDeclaration *declaration = xmlDoc.NewDeclaration();
 	xmlDoc.InsertEndChild(declaration);
 	XMLElement *Revision = xmlDoc.NewElement("Revision");
-	XMLText *revText = xmlDoc.NewText(GetRev());
+	std::string tmp = std::to_string(VALID_CONFIG_REV);
+	XMLText *revText = xmlDoc.NewText(tmp.c_str());
 	Revision->InsertEndChild(revText);
 	xmlDoc.InsertEndChild(Revision);
 

@@ -15,8 +15,8 @@
 #include "usbloader/wdvd.h"
 #include "usbloader/wbfs.h"
 #include "patches/dvd_broadway.h"
-#include "libs/libwbfs/libwbfs.h"
-#include "libs/libwbfs/wiidisc.h"
+#include <wbfs/libwbfs.h>
+#include <wbfs/wiidisc.h>
 #include "main.h"
 #include "sys.h"
 #include "settings/GameTitles.h"

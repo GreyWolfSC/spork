@@ -194,7 +194,6 @@ LoaderSettings::LoaderSettings()
 
 	oldLoaderMode = Settings.LoaderMode;
 	oldGameCubeSource = Settings.GameCubeSource;
-	oldLoaderIOS = Settings.LoaderIOS;
 }
 
 LoaderSettings::~LoaderSettings()
@@ -215,12 +214,6 @@ LoaderSettings::~LoaderSettings()
 	{
 		GCGames::Instance()->LoadAllGames();
 	}
-	
-	if(oldLoaderIOS != Settings.LoaderIOS)
-	{
-		// edit meta.xml arguments
-		editMetaArguments();
-	}
 }
 
 void LoaderSettings::SetOptionNames()
@@ -236,7 +229,6 @@ void LoaderSettings::SetOptionNames()
 	Options->SetName(Idx++, "%s", tr( "Patch Country Strings" ));
 	Options->SetName(Idx++, "%s", tr( "Ocarina" ));
 	Options->SetName(Idx++, "%s", tr( "Private Server" ));
-	Options->SetName(Idx++, "%s", tr( "Loader's IOS" ));
 	Options->SetName(Idx++, "%s", tr( "Game's IOS" ));
 	Options->SetName(Idx++, "%s", tr( "Quick Boot" ));
 	Options->SetName(Idx++, "%s", tr( "Block IOS Reload" ));
@@ -329,12 +321,6 @@ void LoaderSettings::SetOptionValues()
 
 	//! Settings: Private Server
 	Options->SetValue(Idx++, "%s", tr( PrivServText[Settings.PrivateServer] ));
-
-	//! Settings: Loader's IOS
-	if (Settings.godmode)
-		Options->SetValue(Idx++, "IOS %i", Settings.LoaderIOS);
-	else
-		Options->SetValue(Idx++, "********");
 
 	//! Settings: Game's IOS
 	if (Settings.godmode)
@@ -580,32 +566,6 @@ int LoaderSettings::GetMenuInternal()
 	else if (ret == ++Idx)
 	{
 		if (++Settings.PrivateServer >= PRIVSERV_MAX_CHOICE) Settings.PrivateServer = 0;
-	}
-
-	//! Settings: Loader's IOS
-	else if (ret == ++Idx)
-	{
-		if(!Settings.godmode)
-			return MENU_NONE;
-
-		char entered[4];
-		snprintf(entered, sizeof(entered), "%i", Settings.LoaderIOS);
-		if(OnScreenNumpad(entered, sizeof(entered)))
-		{
-			if(atoi(entered) == 58) // allow only IOS58 for IOS <200
-				Settings.LoaderIOS = 58;
-			else
-				Settings.LoaderIOS = LIMIT(atoi(entered), 200, 255);
-
-			if(NandTitles.IndexOf(TITLE_ID(1, Settings.LoaderIOS)) < 0)
-			{
-				WindowPrompt(tr("Warning:"), tr("This IOS was not found on the titles list. If you are sure you have it installed than ignore this warning."), tr("OK"));
-			}
-			else if(Settings.LoaderIOS == 254)
-			{
-				WindowPrompt(tr("Warning:"), tr("This IOS is the BootMii ios. If you are sure it is not BootMii and you have something else installed there than ignore this warning."), tr("OK"));
-			}
-		}
 	}
 
 	//! Settings: Game's IOS

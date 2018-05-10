@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <gctypes.h>
 #include <vector>
+#include <sys/param.h>
 #include "SettingsEnums.h"
 #include "GameCube/DML_Config.h"
 #include "GameCube/DEVO_Config.h"
@@ -51,6 +52,8 @@ class CSettings
 		//!Load a languagefile
 		//!\param language
 		bool LoadLanguage(const char *path, int language = -1);
+
+		char AppLaunchPath[MAXPATHLEN];
 
 		//! System settings stuff
 		bool widescreen;
@@ -81,7 +84,6 @@ class CSettings
 		char update_path[100];
 		char homebrewapps_path[100];
 		char WDMpath[100];
-		char WiinnertagPath[100];
 		char NandEmuPath[50];
 		char NandEmuChanPath[50];
 		char BNRCachePath[50];
@@ -90,6 +92,7 @@ class CSettings
 		char DEVOLoaderPath[100];
 		char NINLoaderPath[100];
 		char CustomBannersURL[100];
+
 		short videomode;
 		short language;
 		short ocarina;
@@ -104,7 +107,6 @@ class CSettings
 		short gamesoundvolume;
 		short tooltips;
 		short parentalcontrol;
-		u8 LoaderIOS;
 		u8 cios;
 		short quickboot;
 		short wsprompt;
@@ -140,7 +142,6 @@ class CSettings
 		f32 FontScaleFactor;
 		f32 ClockFontScaleFactor;
 		f32 PointerSpeed;
-		short Wiinnertag;
 		short SelectedGame;
 		short GameListOffset;
 		short sneekVideoPatch;
@@ -148,7 +149,6 @@ class CSettings
 		std::vector<u32> RequiredCategories;
 		std::vector<u32> ForbiddenCategories;
 		u8 EntryIOS;
-		short UseArgumentIOS;
 		short NandEmuMode;
 		short NandEmuChanMode;
 		short UseSystemFont;

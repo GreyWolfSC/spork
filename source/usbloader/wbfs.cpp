@@ -9,8 +9,6 @@
 #include "usbloader/wbfs/wbfs_base.h"
 #include "usbloader/wbfs/wbfs_wbfs.h"
 #include "usbloader/wbfs/wbfs_fat.h"
-#include "usbloader/wbfs/wbfs_ntfs.h"
-#include "usbloader/wbfs/wbfs_ext.h"
 
 #include "usbloader/GameList.h"
 #include "menu/menus.h"
@@ -97,14 +95,6 @@ s32 WBFS_OpenPart(int part_num)
 	if (strncmp(usbHandle->GetFSName(portPart), "FAT", 3) == 0)
 	{
 		WbfsList[part_num] = new Wbfs_Fat(usbHandle->GetLBAStart(portPart), usbHandle->GetSecCount(portPart), part_num, usbPort);
-	}
-	else if (strncmp(usbHandle->GetFSName(portPart), "NTFS", 4) == 0)
-	{
-		WbfsList[part_num] = new Wbfs_Ntfs(usbHandle->GetLBAStart(portPart), usbHandle->GetSecCount(portPart), part_num, usbPort);
-	}
-	else if (strncmp(usbHandle->GetFSName(portPart), "LINUX", 5) == 0)
-	{
-		WbfsList[part_num] = new Wbfs_Ext(usbHandle->GetLBAStart(portPart), usbHandle->GetSecCount(portPart), part_num, usbPort);
 	}
 	else if (strncmp(usbHandle->GetFSName(portPart), "WBFS", 4) == 0)
 	{

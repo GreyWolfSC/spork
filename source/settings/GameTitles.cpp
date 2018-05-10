@@ -183,7 +183,7 @@ void CGameTitles::WriteCachedTitles(const char * path)
 
 	CacheTitle Cache;
 	u32 count = TitleList.size();
-	u32 revision = atoi(GetRev());
+	u32 revision = VALID_CACHE_REVISION;
 	fwrite(&revision, 1, 4, f);
 	fwrite(Settings.db_language, 1, 10, f);
 	fwrite(&count, 1, 4, f);

@@ -65,7 +65,7 @@ static inline bool IsValidPartition(int fs_type, int cios)
 	}
 	else
 	{
-		return fs_type == PART_FS_WBFS || fs_type == PART_FS_FAT || fs_type == PART_FS_NTFS || fs_type == PART_FS_EXT;
+		return fs_type == PART_FS_WBFS || fs_type == PART_FS_FAT;
 	}
 }
 

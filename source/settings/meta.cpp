@@ -34,8 +34,6 @@ int updateMetaXML (void)
 		return 0;
 
 	char line[50];
-	snprintf(line, sizeof(line), "--ios=%d", Settings.LoaderIOS);
-	MetaXML.SetArgument(line);
 	snprintf(line, sizeof(line), "--usbport=%d", Settings.USBPort);
 	MetaXML.SetArgument(line);
 	snprintf(line, sizeof(line), "--mountusb=%d", Settings.USBAutoMount);
@@ -82,8 +80,6 @@ int editMetaArguments (void)
 		// generate argurments
 		if(strstr(line, "<arguments>") != NULL)
 		{
-			fputs(line, destination);
-			snprintf(line, max_line_size, "				<arg>--ios=%d</arg>\n", Settings.LoaderIOS);
 			fputs(line, destination);
 			snprintf(line, max_line_size, "				<arg>--usbport=%d</arg>\n", Settings.USBPort);
 			fputs(line, destination);

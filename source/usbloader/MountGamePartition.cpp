@@ -35,12 +35,10 @@ static int FindGamePartition()
 	if(IosLoader::IsWaninkokoIOS() && NandTitles.VersionOf(TITLE_ID(1, IOS_GetVersion())) < 18)
 		return -1;
 
-	// Loop through FAT/NTFS/EXT partitions, and find the first partition with games on it (if there is one)
+	// Loop through FAT partitions, and find the first partition with games on it (if there is one)
 	for(int i = 0; i < partCount; ++i)
 	{
-		if(DeviceHandler::GetFilesystemType(USB1+i) != PART_FS_NTFS &&
-		   DeviceHandler::GetFilesystemType(USB1+i) != PART_FS_FAT &&
-		   DeviceHandler::GetFilesystemType(USB1+i) != PART_FS_EXT)
+		if(DeviceHandler::GetFilesystemType(USB1+i) != PART_FS_FAT)
 		{
 			continue;
 		}
@@ -77,7 +75,7 @@ static int PartitionChoice()
 {
 	int ret = -1;
 
-	int choice = WindowPrompt(tr( "No WBFS or FAT/NTFS/EXT partition found" ), tr( "You can select or format a partition or use the channel loader mode." ), tr( "Select" ), tr( "Format" ), tr( "Channels" ));
+	int choice = WindowPrompt(tr( "No WBFS or FAT partition found" ), tr( "You can select or format a partition or use the channel loader mode." ), tr( "Select" ), tr( "Format" ), tr( "Channels" ));
 	if (choice == 0)
 	{
 		Settings.LoaderMode = MODE_NANDCHANNELS;
@@ -89,11 +87,9 @@ static int PartitionChoice()
 		if(part_num >= 0)
 		{
 			if(IosLoader::IsWaninkokoIOS() && NandTitles.VersionOf(TITLE_ID(1, IOS_GetVersion())) < 18 &&
-			   (DeviceHandler::GetFilesystemType(USB1+part_num) == PART_FS_NTFS ||
-				DeviceHandler::GetFilesystemType(USB1+part_num) == PART_FS_FAT ||
-				DeviceHandler::GetFilesystemType(USB1+part_num) == PART_FS_EXT))
+			   (DeviceHandler::GetFilesystemType(USB1+part_num) == PART_FS_FAT))
 			{
-				WindowPrompt(tr("Warning:"), tr("You are trying to select a FAT32/NTFS/EXT partition with cIOS 249 Rev < 18. This is not supported. Continue on your own risk."), tr("OK"));
+				WindowPrompt(tr("Warning:"), tr("You are trying to select a FAT32 partition with cIOS 249 Rev < 18. This is not supported. Continue on your own risk."), tr("OK"));
 			}
 
 			ret = WBFS_OpenPart(part_num);

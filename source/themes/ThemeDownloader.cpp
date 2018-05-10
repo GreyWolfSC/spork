@@ -36,7 +36,7 @@
 #include "network/FileDownloader.h"
 #include "network/http.h"
 #include "menu/menus.h"
-#include "ZipFile.h"
+#include "FileOperations/ZipFile.h"
 #include "utils/ShowError.h"
 #include "utils/tools.h"
 #include "gecko.h"

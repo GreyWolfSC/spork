@@ -61,7 +61,6 @@ GameBrowseMenu::GameBrowseMenu()
 	carouselBackground = NULL;
 	gridBackground = NULL;
 	WDVD_GetCoverStatus(&DiscDriveCoverOld);
-	gameList.FilterList();
 	HDDSizeCallback.SetCallback(this, &GameBrowseMenu::UpdateFreeSpace);
 
 	btnInstall = Resources::GetImageData("button_install.png");

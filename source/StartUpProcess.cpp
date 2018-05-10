@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <sys/param.h>
 #include "StartUpProcess.h"
 #include "GUI/gui.h"
 #include "video.h"
@@ -99,11 +100,10 @@ int StartUpProcess::ParseArguments(int argc, char *argv[])
 		char *ptr = strcasestr(argv[i], "-ios=");
 		if(ptr)
 		{
-			if(atoi(ptr+strlen("-ios=")) == 58)
-				Settings.LoaderIOS = 58;
-			else
-				Settings.LoaderIOS = LIMIT(atoi(ptr+strlen("-ios=")), 200, 255);
-			Settings.UseArgumentIOS = ON;
+			int ret, val = atoi(ptr + strlen("-ios="));
+			ret = IosLoader::ReloadIosKeepingRights(val);
+			if (!ret)
+				return ret;
 		}
 
 		ptr = strcasestr(argv[i], "-usbport=");
@@ -216,6 +216,9 @@ bool StartUpProcess::USBSpinUp()
 
 int StartUpProcess::Run(int argc, char *argv[])
 {
+	if ((argc > 0) && (strlen(argv[0]) > 0))
+		strncpy(Settings.AppLaunchPath, argv[0], sizeof(Settings.AppLaunchPath));
+
 	int quickGameBoot = ParseArguments(argc, argv);
 
 	StartUpProcess Process;
@@ -232,35 +235,12 @@ int StartUpProcess::Execute()
 {
 	Settings.EntryIOS = IOS_GetVersion();
 
-	// Reload app cios if needed
-	SetTextf("Loading application cIOS %s\n", Settings.UseArgumentIOS ? "requested in meta.xml" : "");
-	if(IosLoader::LoadAppCios() < 0)
+	if (!CheckAHBPROT())
 	{
-		SetTextf("Failed loading any cIOS. Trying with IOS58 + AHB access...");
-		
-		// We can allow now operation without cIOS in channel mode with AHB access
-		if(!AHBPROT_DISABLED || (AHBPROT_DISABLED && IOS_GetVersion() != 58))
-		{
-			SetTextf("Failed loading IOS 58. USB Loader GX requires a cIOS or IOS 58 with AHB access. Exiting...\n");
-			sleep(5);
-			Sys_BackToLoader();
-		}
-		else
-		{
-			Settings.LoaderIOS = 58;
-			SetTextf("Running on IOS 58. Wii disc based games and some channels will not work.");
-			sleep(5);
-		}
-	}
-	
-	if(!AHBPROT_DISABLED && IOS_GetVersion() < 200)
-	{
-		SetTextf("Failed loading IOS %i. USB Loader GX requires a cIOS or IOS58 with AHB access. Exiting...\n", IOS_GetVersion());
+		SetTextf("AHB access required. Exiting...\n");
 		sleep(5);
 		Sys_BackToLoader();
 	}
-
-	SetTextf("Using %sIOS %i\n", IOS_GetVersion() >= 200 ? "c" : "", IOS_GetVersion());
 	
 	SetupPads();
 
@@ -276,42 +256,13 @@ int StartUpProcess::Execute()
 	
 	SetTextf("Loading config files\n");
 	
-	gprintf("\tLoading config...%s\n", Settings.Load() ? "done" : "failed");
-	gprintf("\tLoading language...%s\n", Settings.LoadLanguage(Settings.language_path, CONSOLE_DEFAULT) ? "done" : "failed");
-	gprintf("\tLoading game settings...%s\n", GameSettings.Load(Settings.ConfigPath) ? "done" : "failed");
-	gprintf("\tLoading game statistics...%s\n", GameStatistics.Load(Settings.ConfigPath) ? "done" : "failed");
-	gprintf("\tLoading game categories...%s\n", GameCategories.Load(Settings.ConfigPath) ? "done" : "failed");
-	if(Settings.CacheTitles)
-		gprintf("\tLoading cached titles...%s\n", GameTitles.ReadCachedTitles(Settings.titlestxt_path) ? "done" : "failed (using default)");
-	if(Settings.LoaderIOS != IOS_GetVersion())
-	{
-		SetTextf("Reloading to config file's cIOS...\n");
-		
-		// Unmount devices
-		DeviceHandler::DestroyInstance();
-		if(Settings.USBAutoMount == ON)
-			USBStorage2_Deinit();
-
-		// Shut down pads
-		WPAD_Shutdown();
-
-		// Loading now the cios setup in the settings
-		IosLoader::LoadAppCios();
-
-		SetTextf("Reloaded into cIOS %i R%i\n", IOS_GetVersion(), IOS_GetRevision());
-
-		// Re-Mount devices
-		SetTextf("Reinitializing devices...\n");
-		DeviceHandler::Instance()->MountSD();
-		if(Settings.USBAutoMount == ON)
-		{
-			USBSpinUp();
-			DeviceHandler::Instance()->MountAllUSB(false);
-		}
-
-		// Start pads again
-		SetupPads();
-	}
+	Settings.Load();
+	Settings.LoadLanguage(Settings.language_path, CONSOLE_DEFAULT);
+	GameSettings.Load(Settings.ConfigPath);
+	GameStatistics.Load(Settings.ConfigPath);
+	GameCategories.Load(Settings.ConfigPath);
+	if (Settings.CacheTitles)
+		GameTitles.ReadCachedTitles(Settings.titlestxt_path);
 
 	if(!IosLoader::IsHermesIOS() && !IosLoader::IsD2X())
 	{
@@ -335,15 +286,9 @@ int StartUpProcess::Execute()
 		}
 	}
 	
-	// enable isfs permission if using IOS+AHB or Hermes v4
-	if(IOS_GetVersion() < 200 || (IosLoader::IsHermesIOS() && IOS_GetRevision() == 4))
-	{
-		SetTextf("Patching %sIOS%d...\n", IOS_GetVersion() >= 200 ? "c" : "", IOS_GetVersion());
-		if (IosPatch_RUNTIME(true, false, false, false) == ERROR_PATCH)
-			gprintf("Patching %sIOS%d failed!\n", IOS_GetVersion() >= 200 ? "c" : "", IOS_GetVersion());
-		else
-			NandTitles.Get(); // get NAND channel's titles
-	}
+	SetTextf("Initializing library\n");
+	NandTitles.Get(); // get NAND channel's titles
+	gameList.FilterList();
 
 	// We only initialize once for the whole session
 	ISFS_Initialize();
