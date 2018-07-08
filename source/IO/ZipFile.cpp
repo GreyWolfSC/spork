@@ -35,7 +35,7 @@
 #include <malloc.h>
 #include <sys/param.h>
 #include "prompts/ProgressWindow.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "ZipFile.h"
 #include "language/gettext.h"
 

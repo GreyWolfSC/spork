@@ -23,7 +23,7 @@
  ***************************************************************************/
 #include <unistd.h>
 #include "WDMMenu.hpp"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "menu/menus.h"
 #include "themes/CTheme.h"
 #include "language/gettext.h"

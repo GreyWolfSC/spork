@@ -30,7 +30,7 @@
 #include "utils/minizip/miniunz.h"
 #include "prompts/TitleBrowser.h"
 #include "homebrewboot/BootHomebrew.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "prompts/ProgressWindow.h"
 #include "utils/tools.h"
 #include "wstring.hpp"

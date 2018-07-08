@@ -6,7 +6,7 @@
 #include "prompts/PromptWindows.h"
 #include "language/gettext.h"
 #include "themes/CTheme.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "menu.h"
 #include "sys.h"
 #include "gct.h"

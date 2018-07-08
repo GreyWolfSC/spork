@@ -7,7 +7,7 @@
 #include "usbloader/AlternateDOLOffsets.h"
 #include "GameCube/GCGames.h"
 #include "themes/CTheme.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "settings/menus/GameSettingsMenu.hpp"
 #include "settings/CSettings.h"
 #include "settings/CGameSettings.h"

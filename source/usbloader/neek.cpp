@@ -23,7 +23,7 @@
 #include "neek.hpp"
 #include "memory/mem2.h"
 #include "Controls/DeviceHandler.hpp"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "settings/CSettings.h"
 #include "sys.h"
 #include "gecko.h"
@@ -334,7 +334,7 @@ int neek2oSetNAND(const char* nandpath)
 	if(!CheckFile(nandconfigPath) || FileSize(nandconfigPath) < NANDCONFIG_HEADER_SIZE+1)
 	{
 		u8* nandConfigHeader[NANDCONFIG_HEADER_SIZE];
-		memset(nandConfigHeader, 0, NANDCONFIG_HEADER_SIZE);
+		memset(nandConfigHeader, 0, sizeof(nandConfigHeader));
 		
 		f = fopen(nandconfigPath, "wb");
 		if(!f)

@@ -13,7 +13,7 @@
 #include <fat.h>
 #include "usbloader/fatfile_frag.h"
 #include "Controls/DeviceHandler.hpp"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "settings/CSettings.h"
 #include "settings/GameTitles.h"
 #include "usbloader/disc.h"

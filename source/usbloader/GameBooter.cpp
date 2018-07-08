@@ -51,7 +51,7 @@
 #include "NandEmu.h"
 #include "SavePath.h"
 #include "sys.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "prompts/ProgressWindow.h"
 #include "neek.hpp"
 

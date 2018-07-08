@@ -5,7 +5,7 @@
 #include "mload/mload.h"
 #include "banner/BannerAsync.h"
 #include "Controls/DeviceHandler.hpp"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "homebrewboot/BootHomebrew.h"
 #include "homebrewboot/HomebrewXML.h"
 #include "settings/CSettings.h"
@@ -19,7 +19,7 @@
 #include "usbloader/wbfs.h"
 #include "GameCube/GCGames.h"
 #include "themes/CTheme.h"
-#include "SoundOperations/SoundHandler.hpp"
+#include "Audio/SoundHandler.hpp"
 #include "utils/ThreadedTask.hpp"
 #include "audio.h"
 #include "lstub.h"
@@ -46,7 +46,7 @@ void wiilight(int enable) // Toggle wiilight (thanks Bool for wiilight source)
 u8 shutdown = 0;
 u8 reset = 0;
 
-void __Sys_ResetCallback(void)
+void __Sys_ResetCallback(u32 irq, void * ctx)
 {
 	/* Reboot console */
 	reset = 1;
@@ -281,7 +281,7 @@ void ScreenShot()
 	{
 		// Error formatting the time.
 		// Use the raw time in seconds as a fallback.
-		snprintf(filename, sizeof(filename), "USBLoader_GX_ScreenShot-%ld.png", rawtime);
+		snprintf(filename, sizeof(filename), "USBLoader_GX_ScreenShot-%ld.png", (u32)rawtime);
 	}
 
 	// Create the full pathname.

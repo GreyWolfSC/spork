@@ -28,7 +28,7 @@
 
 #include "CSettings.h"
 #include "CGameSettings.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "svnrev.h"
 
 #define VALID_CONFIG_REV	1031

@@ -217,7 +217,7 @@ bool StartUpProcess::USBSpinUp()
 int StartUpProcess::Run(int argc, char *argv[])
 {
 	if ((argc > 0) && (strlen(argv[0]) > 0))
-		strncpy(Settings.AppLaunchPath, argv[0], sizeof(Settings.AppLaunchPath));
+		Settings.AppLaunchPath = argv[0];
 
 	int quickGameBoot = ParseArguments(argc, argv);
 

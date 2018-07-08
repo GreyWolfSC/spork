@@ -22,7 +22,7 @@
 #include "prompts/PromptWindows.h"
 #include "prompts/ProgressWindow.h"
 #include "prompts/CheckboxPrompt.hpp"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "settings/CSettings.h"
 #include "settings/GameTitles.h"
 #include "language/gettext.h"

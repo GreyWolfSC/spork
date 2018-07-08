@@ -17,8 +17,9 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <sys/stat.h>
+#include <sys/statvfs.h>
 #include "GCGames.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "settings/GameTitles.h"
 #include "settings/CSettings.h"
 #include "prompts/GCDeleteMenu.h"

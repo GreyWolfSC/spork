@@ -29,7 +29,7 @@
 #include "language/gettext.h"
 #include "networkops.h"
 #include "http.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "prompts/PromptWindows.h"
 #include "prompts/ProgressWindow.h"
 #include "utils/ShowError.h"

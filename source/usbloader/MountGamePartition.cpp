@@ -1,7 +1,7 @@
 #include <dirent.h>
 #include <unistd.h>
 
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "Controls/DeviceHandler.hpp"
 #include "wad/nandtitle.h"
 #include "system/IosLoader.h"

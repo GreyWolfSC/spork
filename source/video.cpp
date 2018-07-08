@@ -16,8 +16,8 @@
 #include <wiiuse/wpad.h>
 
 #include "GUI/gui.h"
-#include "ImageOperations/TextureConverter.h"
-#include "ImageOperations/ImageWrite.h"
+#include "Imaging/TextureConverter.h"
+#include "Imaging/ImageWrite.h"
 #include "settings/CSettings.h"
 #include "input.h"
 #include "sys.h"

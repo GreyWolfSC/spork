@@ -23,7 +23,7 @@
  ***************************************************************************/
 #include <unistd.h>
 #include "UninstallSM.hpp"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "GameCube/GCGames.h"
 #include "Channels/channels.h"
 #include "settings/CSettings.h"

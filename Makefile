@@ -40,9 +40,9 @@ SOURCES		:=	source \
 				source/themes \
 				source/menu \
 				source/memory \
-				source/FileOperations \
-				source/ImageOperations \
-				source/SoundOperations \
+				source/IO \
+				source/Imaging \
+				source/Audio \
 				source/SystemMenu \
 				source/utils \
 				source/utils/minizip \

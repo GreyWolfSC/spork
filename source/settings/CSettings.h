@@ -53,7 +53,7 @@ class CSettings
 		//!\param language
 		bool LoadLanguage(const char *path, int language = -1);
 
-		char AppLaunchPath[MAXPATHLEN];
+		std::string AppLaunchPath;
 
 		//! System settings stuff
 		bool widescreen;

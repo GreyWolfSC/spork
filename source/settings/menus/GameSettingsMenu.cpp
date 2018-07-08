@@ -24,7 +24,7 @@
 #include <unistd.h>
 #include "GameSettingsMenu.hpp"
 #include "themes/CTheme.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "prompts/PromptWindows.h"
 #include "prompts/ProgressWindow.h"
 #include "prompts/CategorySelectPrompt.hpp"

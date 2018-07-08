@@ -30,7 +30,7 @@
 #include "GUI/gui.h"
 #include "settings/CSettings.h"
 #include "banner/OpeningBNR.hpp"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "SystemMenu/SystemMenuResources.h"
 #include "menu/menus.h"
 #include "wad/nandtitle.h"

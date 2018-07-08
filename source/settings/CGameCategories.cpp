@@ -29,7 +29,7 @@
 #include "settings/CSettings.h"
 #include "usbloader/GameList.h"
 #include "language/gettext.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "prompts/ProgressWindow.h"
 #include "xml/GameTDB.hpp"
 #include "utils/StringTools.h"

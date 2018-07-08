@@ -32,7 +32,7 @@
 #include <string>
 
 #include "gecko.h"
-#include "FileOperations/ZipFile.h"
+#include "IO/ZipFile.h"
 #include "http.h"
 #include "networkops.h"
 #include "HTML_Stream.h"
@@ -45,7 +45,7 @@
 #include "utils/StringTools.h"
 #include "utils/ShowError.h"
 #include "prompts/PromptWindows.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "xml/GameTDB.hpp"
 #include "wad/nandtitle.h"
 #include "wad/wad.h"

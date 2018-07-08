@@ -32,7 +32,7 @@
 #include "Controls/DeviceHandler.hpp"
 #include "language/gettext.h"
 #include "themes/CTheme.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "utils/encrypt.h"
 #include "svnrev.h"
 

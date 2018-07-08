@@ -14,7 +14,7 @@
 #include "menu/menus.h"
 #include "sys.h"
 #include "wpad.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "prompts/PromptWindows.h"
 #include "themes/CTheme.h"
 #include "settings/GameTitles.h"

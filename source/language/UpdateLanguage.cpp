@@ -10,8 +10,8 @@
 
 #include "UpdateLanguage.h"
 #include "gettext.h"
-#include "FileOperations/fileops.h"
-#include "FileOperations/DirList.h"
+#include "IO/fileops.h"
+#include "IO/DirList.h"
 #include "menu.h"
 #include "network/networkops.h"
 #include "network/http.h"

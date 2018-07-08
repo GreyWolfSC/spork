@@ -16,7 +16,7 @@
  ****************************************************************************/
 #include <malloc.h>
 #include "CustomBanner.h"
-#include "ImageOperations/TextureConverter.h"
+#include "Imaging/TextureConverter.h"
 #include "utils/StringTools.h"
 
 

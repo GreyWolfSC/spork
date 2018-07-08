@@ -26,7 +26,7 @@
 #include <unistd.h>
 #include "GUI/gui.h"
 #include "utils/uncompress.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "SoundHandler.hpp"
 #include "WavDecoder.hpp"
 

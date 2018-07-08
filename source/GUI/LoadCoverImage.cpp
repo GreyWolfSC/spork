@@ -1,6 +1,6 @@
 #include "GUI/gui.h"
 #include "usbloader/disc.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "settings/CSettings.h"
 #include "themes/CTheme.h"
 

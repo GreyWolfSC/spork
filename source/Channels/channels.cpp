@@ -26,7 +26,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <sys/dirent.h>
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "Controls/DeviceHandler.hpp"
 #include "settings/CSettings.h"
 #include "settings/GameTitles.h"

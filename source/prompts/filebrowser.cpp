@@ -22,7 +22,7 @@
 #include "menu.h"
 
 #include "themes/CTheme.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "language/gettext.h"
 #include "PromptWindows.h"
 #include "GUI/gui_filebrowser.h"

@@ -25,7 +25,7 @@ distribution.
 #include "Channels/channels.h"
 #include "GameCube/GCGames.h"
 #include "GameCube/gcdisc.h"
-#include "FileOperations/fileops.h"
+#include "IO/fileops.h"
 #include "language/gettext.h"
 #include "usbloader/disc.h"
 #include "usbloader/wbfs.h"
